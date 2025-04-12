@@ -1,0 +1,9 @@
+{
+	"name": "ADFDEMOFORGITHUB-KISHORB73",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "063cad35-51ff-4933-925e-d4159bf1a970",
+		"tenantId": "08e1f380-be76-44f6-a45b-52fea9dc2fe0"
+	}
+}
