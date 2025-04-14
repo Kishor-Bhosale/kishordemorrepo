@@ -1,0 +1,9 @@
+{
+	"name": "ADF-DEV-KISHOR",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6b0b8c5b-e324-4130-a7e2-a24cd7e5fba1",
+		"tenantId": "08e1f380-be76-44f6-a45b-52fea9dc2fe0"
+	}
+}
