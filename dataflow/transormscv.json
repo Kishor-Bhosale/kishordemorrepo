@@ -1,0 +1,91 @@
+{
+	"name": "transormscv",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dayaflow_source",
+						"type": "DatasetReference"
+					},
+					"name": "sourcecsv"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dataflow_sink",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "selectcolms"
+				},
+				{
+					"name": "filterrows"
+				},
+				{
+					"name": "splitpayment"
+				},
+				{
+					"name": "derivedColumn"
+				},
+				{
+					"name": "aggregate"
+				},
+				{
+					"name": "alterRow"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          transaction_id as short,",
+				"          transactional_date as date,",
+				"          product_id as string,",
+				"          customer_id as string,",
+				"          payment as string,",
+				"          credit_card as string,",
+				"          loyalty_card as string,",
+				"          cost as string,",
+				"          quantity as string,",
+				"          price as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcecsv",
+				"sourcecsv select(mapColumn(",
+				"          transaction_id,",
+				"          transactional_date,",
+				"          product_id,",
+				"          customer_id,",
+				"          payment,",
+				"          credit_card,",
+				"          cost,",
+				"          quantity,",
+				"          price",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectcolms",
+				"selectcolms filter(customer_id != '12') ~> filterrows",
+				"filterrows split(payment == 'visa',",
+				"     payment == 'mastercard',",
+				"     disjoint: false) ~> splitpayment@(visa, mastercard, amex)",
+				"splitpayment@amex derive(payment = coalesce(payment,'N/A')) ~> derivedColumn",
+				"derivedColumn aggregate(groupBy(customer_id),",
+				"     product_id = max(product_id)) ~> aggregate",
+				"aggregate alterRow(insertIf(1==1)) ~> alterRow",
+				"alterRow sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink"
+			]
+		}
+	}
+}
