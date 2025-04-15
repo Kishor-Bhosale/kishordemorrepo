@@ -11,8 +11,20 @@
 		"AzureBlobStorage2_connectionString": {
 			"value": ""
 		},
+		"AzureDataLakeStoragelinkedService_accountKey": {
+			"value": ""
+		},
+		"linkedserviceDLake_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStoragelinkedService_properties_typeProperties_url": {
+			"value": "https://storageaccountfortest123.dfs.core.windows.net/"
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://testkeyvault-kishor.vault.azure.net/"
+		},
+		"linked_HttpServer_git_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
 		}
 	}
 }

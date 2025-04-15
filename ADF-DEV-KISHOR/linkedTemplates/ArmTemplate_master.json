@@ -15,9 +15,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
 		},
+		"AzureDataLakeStoragelinkedService_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStoragelinkedService'"
+		},
+		"linkedserviceDLake_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedserviceDLake'"
+		},
+		"AzureDataLakeStoragelinkedService_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageaccountfortest123.dfs.core.windows.net/"
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://testkeyvault-kishor.vault.azure.net/"
+		},
+		"linked_HttpServer_git_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -52,8 +68,20 @@
 					"AzureBlobStorage2_connectionString": {
 						"value": "[parameters('AzureBlobStorage2_connectionString')]"
 					},
+					"AzureDataLakeStoragelinkedService_accountKey": {
+						"value": "[parameters('AzureDataLakeStoragelinkedService_accountKey')]"
+					},
+					"linkedserviceDLake_connectionString": {
+						"value": "[parameters('linkedserviceDLake_connectionString')]"
+					},
+					"AzureDataLakeStoragelinkedService_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStoragelinkedService_properties_typeProperties_url')]"
+					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"linked_HttpServer_git_properties_typeProperties_url": {
+						"value": "[parameters('linked_HttpServer_git_properties_typeProperties_url')]"
 					}
 				}
 			},
