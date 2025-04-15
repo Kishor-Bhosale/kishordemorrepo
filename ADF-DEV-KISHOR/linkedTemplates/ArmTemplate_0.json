@@ -1000,6 +1000,37 @@
 				"[concat(variables('factoryId'), '/datasets/parametcsv')]",
 				"[concat(variables('factoryId'), '/datasets/reportingsink')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/selectdfiletrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "onlyselectfiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 45,
+						"startTime": "2025-04-15T19:06:00",
+						"endTime": "2025-04-15T20:06:00",
+						"timeZone": "India Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/onlyselectfiles')]"
+			]
 		}
 	]
 }
