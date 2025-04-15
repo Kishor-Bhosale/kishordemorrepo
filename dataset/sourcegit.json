@@ -1,0 +1,22 @@
+{
+	"name": "sourcegit",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linked_HttpServer_git",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "Kishor-Bhosale/kishordemorrepo/refs/heads/main/Fact_Sales_2.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
